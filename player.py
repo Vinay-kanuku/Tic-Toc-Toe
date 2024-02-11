@@ -7,15 +7,25 @@ class Player:
  
 
 class ComputerPlayer(Player):
-    def __init__(self, letter) -> None:
+    def __init__(self, letter):
         super().__init__(letter)
     def get_move(self, game):
-        pass
+        return random.choice(game.available_moves())
 
 
 class HumanPlayer(Player):
-    def __init__(self, letter) -> None:
+    def __init__(self, letter):
         super().__init__(letter)
 
     def get_move(self, game):
-        pass 
+        avalable_moves_now  = game.available_moves()
+        try:
+            spot = int(input("Enter your human move :"))
+            if spot not in avalable_moves_now :
+                raise ValueError
+        except ValueError:
+            print("Invalid move")
+
+        return spot
+
+    
